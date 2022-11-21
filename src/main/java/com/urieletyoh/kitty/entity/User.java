@@ -1,6 +1,7 @@
 package com.urieletyoh.kitty.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -13,9 +14,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-//    @ManyToOne
-//    @JoinColumn(name = "privateMessage_id")
-//    private PrivateMessage privateMessage;
+    @OneToMany(mappedBy = "sender")
+    private List<PrivateMessage> senderPrivateMessages;
+    @OneToMany(mappedBy = "receiver")
+    private List<PrivateMessage> receiverPrivateMessages;
 
     public User(){}
 
@@ -41,5 +43,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<PrivateMessage> getSenderPrivateMessages() {
+        return this.senderPrivateMessages;
+    }
+
+    public void setSenderPrivateMessages(List<PrivateMessage> senderPrivateMessages) {
+        this.senderPrivateMessages = senderPrivateMessages;
+    }
+
+    public List<PrivateMessage> getReceiverPrivateMessages() {
+        return receiverPrivateMessages;
+    }
+
+    public void setReceiverPrivateMessages(List<PrivateMessage> receiverPrivateMessages) {
+        this.receiverPrivateMessages = receiverPrivateMessages;
     }
 }
