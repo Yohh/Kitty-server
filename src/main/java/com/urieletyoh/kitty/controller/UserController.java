@@ -34,6 +34,7 @@ public class UserController {
         }
         return user;
     }
+
     @PostMapping("/api/register")
     public void addUser(@RequestBody User user) {
         String clearTextPassword = user.getPassword();

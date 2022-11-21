@@ -23,8 +23,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
         http    .csrf().disable()
                 .authorizeRequests()
-//                .mvcMatchers("/", "/api/register", "/api/privatemessages").permitAll()
-                .anyRequest().permitAll()
+                .mvcMatchers("/", "/api/register", "/api/privatemessages").permitAll()
+//                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .and()

@@ -1,5 +1,7 @@
 package com.urieletyoh.kitty.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,8 +17,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "sender")
+    @JsonManagedReference
     private List<PrivateMessage> senderPrivateMessages;
     @OneToMany(mappedBy = "receiver")
+    @JsonManagedReference
     private List<PrivateMessage> receiverPrivateMessages;
 
     public User(){}

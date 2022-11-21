@@ -5,8 +5,6 @@ import com.urieletyoh.kitty.entity.User;
 import com.urieletyoh.kitty.repository.PrivateMessageRepository;
 import com.urieletyoh.kitty.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
