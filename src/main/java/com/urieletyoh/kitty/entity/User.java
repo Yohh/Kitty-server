@@ -17,10 +17,8 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "sender")
-    @JsonManagedReference
     private List<PrivateMessage> senderPrivateMessages;
     @OneToMany(mappedBy = "receiver")
-    @JsonManagedReference
     private List<PrivateMessage> receiverPrivateMessages;
 
     public User(){}

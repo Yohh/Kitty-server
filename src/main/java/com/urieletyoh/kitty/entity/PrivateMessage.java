@@ -1,6 +1,7 @@
 package com.urieletyoh.kitty.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -13,11 +14,11 @@ public class PrivateMessage {
 
     @ManyToOne()
     @JoinColumn(name = "sender_id")
-    @JsonBackReference
+    @JsonIgnore
     private User sender;
     @ManyToOne()
     @JoinColumn(name = "receiver_id")
-    @JsonBackReference
+    @JsonIgnore
     private User receiver;
 
     private String content;
