@@ -37,9 +37,10 @@ public class UserController {
     }
 
     @PostMapping("/api/register")
-    public void addUser(@RequestBody User user) {
+    public User addUser(@RequestBody User user) {
         String clearTextPassword = user.getPassword();
         user.setPassword(passwordEncoder.encode(clearTextPassword));
-        repository.save(user);
+        User newUser = repository.save(user);
+        return newUser;
     }
 }
