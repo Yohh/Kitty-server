@@ -3,6 +3,7 @@ package com.urieletyoh.kitty.controller;
 import com.urieletyoh.kitty.entity.User;
 import com.urieletyoh.kitty.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +43,15 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(clearTextPassword));
         User newUser = repository.save(user);
         return newUser;
+    }
+
+    @RequestMapping("/api/login")
+    public boolean login(@RequestBody User user) {
+            Optional<User> optionalUser = Optional.ofNullable(repository.findByUsername(user.getUsername()));
+            if(optionalUser.isPresent()) {
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                return passwordEncoder.matches(user.getPassword(), optionalUser.get().getPassword());
+            }
+            return false;
     }
 }

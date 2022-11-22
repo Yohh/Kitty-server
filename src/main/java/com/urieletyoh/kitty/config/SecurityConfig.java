@@ -23,7 +23,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
         http    .csrf().disable()
                 .authorizeRequests()
-                .mvcMatchers("/", "/api/register").permitAll()
+                .mvcMatchers("/", "/api/login", "/api/register").permitAll()
                 .mvcMatchers("/api/privatemessages").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
