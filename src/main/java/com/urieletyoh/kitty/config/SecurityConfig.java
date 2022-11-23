@@ -10,6 +10,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.SessionManagementFilter;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 public class SecurityConfig {
@@ -21,17 +25,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
-        http    .csrf().disable()
+        http
+                .cors()
+                .and()
+                .csrf().disable()
                 .authorizeRequests()
-                .mvcMatchers("/", "/api/login", "/api/register", "/api/logout").permitAll()
+                .mvcMatchers("/", "/api/login", "/api/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("http://localhost:4200/login").permitAll()
-                .defaultSuccessUrl("http://localhost:4200/chat")
-                .failureUrl("http://localhost:4200/login")
-                .and()
-                .logout().permitAll()
                 .and()
                 .httpBasic();
 
