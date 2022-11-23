@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestBody User user) {
+    public Authentication login(@RequestBody User user) {
            /* Optional<User> optionalUser = Optional.ofNullable(repository.findByUsername(user.getUsername()));
             if(optionalUser.isPresent()) {
                 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -65,6 +65,6 @@ public class UserController {
         System.out.println(manager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())));
        Authentication authentication = manager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-       return authentication.getName();
+       return authentication;
     }
 }
