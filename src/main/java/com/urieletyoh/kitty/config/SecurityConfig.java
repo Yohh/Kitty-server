@@ -23,11 +23,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
         http    .csrf().disable()
                 .authorizeRequests()
-                .mvcMatchers("/", "/api/login", "/api/register").permitAll()
-                .mvcMatchers("/api/privatemessages").hasRole("USER")
+                .mvcMatchers("/", "/api/login", "/api/register", "/api/logout").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("http://localhost:4200/login").permitAll()
+                .defaultSuccessUrl("http://localhost:4200/chat")
+                .failureUrl("http://localhost:4200/login")
+                .and()
+                .logout().permitAll()
                 .and()
                 .httpBasic();
 

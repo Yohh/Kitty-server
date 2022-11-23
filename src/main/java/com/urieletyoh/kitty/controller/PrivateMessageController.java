@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"}, allowCredentials = "true")
 @RestController
 public class PrivateMessageController {
 
