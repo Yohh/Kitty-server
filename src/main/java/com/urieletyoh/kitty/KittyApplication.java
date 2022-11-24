@@ -17,7 +17,6 @@ public class KittyApplication {
 		Configuration config = new Configuration();
 		config.setHostname("localhost");
 		config.setPort(8085);
-	//	config.setOrigin("http://localhost:8085");
 
 		final SocketIOServer server = new SocketIOServer(config);
 
@@ -31,6 +30,15 @@ public class KittyApplication {
 				// broadcast messages to all clients
 				System.out.println(data.toString());
 				server.getBroadcastOperations().sendEvent("chatevent", data);
+			}
+		});
+
+		server.addEventListener("online", String.class, new DataListener<String>() {
+			@Override
+			public void onData(SocketIOClient client, String data, AckRequest ackRequest) {
+				// broadcast messages to all clients
+				System.out.println(data.toString());
+				server.getBroadcastOperations().sendEvent("online", data);
 			}
 		});
 
