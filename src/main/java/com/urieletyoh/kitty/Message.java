@@ -6,15 +6,13 @@ import java.awt.*;
 
 @Data
 public class Message {
-    private MessageType type;
     private String message;
-    private String room;
-
+    private String author;
     public Message() {}
 
-    public Message(MessageType type, String message) {
-        this.type = type;
+    public Message(String message, String author) {
         this.message = message;
+        this.author = author;
     }
 }
 

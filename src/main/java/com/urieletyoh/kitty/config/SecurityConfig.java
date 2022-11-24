@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .mvcMatchers("/", "/api/login", "/api/register").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .and()
